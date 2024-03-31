@@ -21,7 +21,6 @@ jobs:
       - name: Call with Personal personal access toke (PAT)
         run: |
           for i in {1..10}; do
-            gh api \
             curl -L \
               -i \
               -H "Accept: application/vnd.github+json" \
