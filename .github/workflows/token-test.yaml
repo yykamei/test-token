@@ -11,6 +11,7 @@ jobs:
         run: |
           for i in {1..10}; do
             curl -L \
+              -s \
               -i \
               -H "Accept: application/vnd.github+json" \
               -H "Authorization: Bearer ${{ github.token }}" \
@@ -23,6 +24,7 @@ jobs:
         run: |
           for i in {1..10}; do
             curl -L \
+              -s \
               -i \
               -H "Accept: application/vnd.github+json" \
               -H "Authorization: Bearer ${{ secrets.PAT }}" \
