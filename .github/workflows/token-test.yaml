@@ -1,0 +1,29 @@
+name: Token Test
+on:
+  workflow_dispatch:
+permissions:
+  issues: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call with github.token
+        run: |
+          gh api \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            --include \
+            /repos/yykamei/test-token/issues/1 \
+          | grep -i ratelimit
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Call with Personal personal access toke (PAT)
+        run: |
+          gh api \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            --include \
+            /repos/yykamei/test-token/issues/1 \
+          | grep -i ratelimit
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
