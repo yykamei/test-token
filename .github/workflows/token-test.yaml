@@ -16,7 +16,8 @@ jobs:
               -H "Authorization: Bearer ${{ github.token }}" \
               -H "X-GitHub-Api-Version: 2022-11-28" \
               -H 'If-None-Match: W/"0689d29ae9e29c712261ad0c5ae081387f7b1839f43c0ec06836853259ed938c"' \
-              https://api.github.com/repos/yykamei/test-token/issues/1
+              https://api.github.com/repos/yykamei/test-token/issues/1 \
+              | grep 'x-ratelimit-remaining:'
           done
       - name: Call with Personal personal access toke (PAT)
         run: |
@@ -27,5 +28,6 @@ jobs:
               -H "Authorization: Bearer ${{ secrets.PAT }}" \
               -H "X-GitHub-Api-Version: 2022-11-28" \
               -H 'If-None-Match: W/"0689d29ae9e29c712261ad0c5ae081387f7b1839f43c0ec06836853259ed938c"' \
-              https://api.github.com/repos/yykamei/test-token/issues/1
+              https://api.github.com/repos/yykamei/test-token/issues/1 \
+              | grep 'x-ratelimit-remaining:'
           done
